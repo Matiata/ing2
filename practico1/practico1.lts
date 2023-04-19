@@ -1,0 +1,32 @@
+MEETING = (hello -> converse -> goodbye -> STOP).
+
+JOB = (arrive -> work -> leave -> JOB).
+
+MOVIE = (ahead -> (left -> STOP | right -> MOVIE)).
+
+GAME = ( {one, two} -> GAME2 | three -> lose -> GAME),
+GAME2 = (win -> GAME).
+
+FOURTICK = (tick -> tick -> tick -> tick -> STOP).
+
+DOUBLE = (in[i:1..3] ->out[i]-> DOUBLE).
+
+PERSON = (weekend -> sleep -> REST
+   	 | weekend -> sleep -> work -> PERSON ),
+REST = ({play, shop} -> PERSON).
+
+range T = 0..2
+VARIABLE = VARIABLE[0],
+VARIABLE[i:T] = (read[i] ->VARIABLE[i]
+   		 |write[v:T]->VARIABLE[v]).
+
+BISTABLE = (trigger -> [1] -> SWITCH ),
+SWITCH = (trigger -> [0] -> BISTABLE).
+
+range LVL = 0..9
+SENSOR(N=5)=(when (N<=2) low -> LEVEL[N] | when(N>=8) high -> LEVEL[N] | normal -> LEVEL[N]),
+LEVEL[i:LVL] = (when (i<9) up-> SENSOR(i+1) | when (0<i) down -> SENSOR(i-1)).
+
+
+
+

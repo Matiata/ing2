@@ -1,0 +1,7 @@
+MAQUINA = MAQUINA[0],
+MAQUINA[i:0..35] = (when(i<15) agregar5 -> MAQUINA[i+5] 
+				| when(i<15) agregar10 -> MAQUINA[i+10] 
+				| when(i<15) agregar20 -> MAQUINA[i+20]
+				| when(i>15) vuelto -> bebida -> MAQUINA[0]
+				| when(i==15) bebida -> MAQUINA[0]).
+

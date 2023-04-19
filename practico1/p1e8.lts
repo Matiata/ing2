@@ -1,0 +1,6 @@
+RADIO = (on -> FREC),
+FREC = FREC[108],
+FREC[i:88..108] = (off -> RADIO
+				| reset -> FREC[108] 
+				| when(i>88) scan -> SCANNING[i-1]),
+SCANNING[i:88..108] = (find -> FREC[i] | when(i>88) next -> SCANNING[i-1]).

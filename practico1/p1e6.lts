@@ -1,0 +1,7 @@
+const N1 = 9
+range T1 = 0..N1
+SENSOR = SENSOR[5] ,
+SENSOR[i:T1] = (update[u:T1] -> SENSOR[u]
+         		| when(i<=2) bajo -> SENSOR[i]
+         		| when (2<i && i<8) normal -> SENSOR[i]
+         		| when (8<=i) alto -> SENSOR[i]).

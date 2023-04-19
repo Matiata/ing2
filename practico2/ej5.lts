@@ -1,0 +1,11 @@
+const N = 5
+range L = 0..N
+
+CHAN = CHAN[0],
+CHAN[i:L] = (when(i<N) send -> CHAN[i+1] | when(0<i) receive -> CHAN[i-1]).
+
+SENDER = (send -> SENDER).
+
+RECEIVER = (receive -> RECEIVER).
+
+||SISTEM = (CHAN || SENDER || RECEIVER).

@@ -1,0 +1,21 @@
+const N = 4
+const M = 4
+const K = 2
+range T = 0..2
+
+VAR = VAR[0],
+VAR[u:T] = (read[u] -> VAR[u] | write[v:T] -> VAR[v]).
+
+READER = READER[1],
+READER[i:1..N] = (acquire -> read[T] -> release -> READER[i]).
+
+WRITER = WRITER[1],
+WRITER[i:1..M] = (acquire -> (read[T] -> release -> WRITER[i] | write[T] -> release -> WRITER[i])).
+
+CONTROL = COUNT[0],
+COUNT[i:0..K] = (when (i<K) acquire -> COUNT[i+1] | when (0<i) release -> COUNT[i-1]).
+
+||SYSTEM = (VAR || CONTROL || readers:READER || writers:WRITER)/{{readers,writers}.[1..M].acquire/acquire,
+                                                                {readers,writers}.[1..M].release/release,
+                                                                writers.[1..M].write/write,
+                                                                {readers,writers}.[1..M].read/read}.

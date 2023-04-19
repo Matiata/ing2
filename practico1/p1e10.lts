@@ -1,0 +1,11 @@
+range CAPACITY = 0..10
+EAST = (start -> EASTOPEN),
+EASTOPEN = (end -> EAST | in-> EASTOPEN).
+WEST = (out -> WEST).
+DIRECTOR = (open -> close -> DIRECTOR).
+CONTROL = CONTROL[0],
+CONTROL[i:CAPACITY] = (when (i==0) open -> start -> CONTROL[i] 
+					| close -> end -> CONTROL[i]
+					| when (i<10) in -> CONTROL [i+1] 
+					| when (0<i) out -> CONTROL [i-1]).
+||MUSEUM = (CONTROL || EAST || WEST || DIRECTOR).

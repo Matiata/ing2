@@ -1,0 +1,12 @@
+const N = 2
+range A = 0..N
+const M = 2
+range E = 0..M
+
+CONTROL(I=0) = ASIENTOS[I],
+ASIENTOS[i:A] = (libre[I] -> ASIENTOS[I] | reserva[I] -> OCUPADOS[I]),
+OCUPADOS[u:A] = (ocupado[u] -> OCUPADOS[u]).
+
+EMPLEADO = (libre[u:A] -> (reserva[u] -> EMPLEADO | ignorar -> EMPLEADO) | ocupado[u:A] -> EMPLEADO).
+
+||SISTEMA = (forall[i:A] CONTROL(i) || [E]:EMPLEADO)/{[E].libre/libre, [E].reserva/reserva, [E].ocupado/ocupado}.

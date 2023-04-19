@@ -1,0 +1,10 @@
+const M = 3
+
+OLLA = OLLA[M],
+OLLA[i:0..M] = (when(i>0) servir -> OLLA[i-1] | when(i==0) llenar -> OLLA[M]).
+
+SALVAJE = (servir -> SALVAJE).
+
+COCINERO = (llenar -> COCINERO).
+
+||CENA = (OLLA || SALVAJE || COCINERO).
